@@ -23,7 +23,7 @@
               <i class="bi bi-person-badge"></i> {{ auth()->user()->name }} 
             </a>
             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/users/profile">Change Password</a>
+              <a class="dropdown-item" href="/changePassword">Change Password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
             </div>

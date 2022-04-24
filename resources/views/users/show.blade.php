@@ -17,6 +17,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                 @endif
 
                 <form action="{{ route('users.update',$user->id) }}" method="POST">
                     @csrf
@@ -37,17 +43,13 @@
                         </div>        
                     </div>
                     <div class="invisible">
-                        {{-- password update via change password menu! --}}
+                        {{-- password update via change password menu!, role only updateable by admin --}}
                         <input type="hidden" class="form-control" id="password" name="password"
                                 value="{{ $user->password}}" placeholder="Password" required>
+                        <input type="hidden" class="form-control" id="roleid" name="roleid" 
+                                value="{{ $user->roleid}}" placeholder="Role ID" required>
                     </div>
-                    <div class="row mb-3">
-                        <label for="roleid" class="col-sm-1 col-form-label">Role ID</label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" id="roleid" name="roleid" 
-                            value="{{ $user->roleid}}" placeholder="Role ID" required>
-                        </div>        
-                    </div>
+                  
                     <div class="row mb-3">
                         <label for="phone" class="col-sm-1 col-form-label">Phone</label>
                         <div class="col-sm-5">

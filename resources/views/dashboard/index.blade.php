@@ -16,9 +16,7 @@
                           
                             </span>
                         </h5>
-                        <p class="card-text">Your Profile info <br>
-                            <a href="#" class="btn btn-primary">View Profile</a>
-                        </p>
+                        <p class="card-text">Use Sidebar to navigate between menu</p>
                 </div>
             
             </div>

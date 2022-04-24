@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -101,9 +103,18 @@ class UserController extends Controller
         //encrypt password befor saving to db
         $request['password']=bcrypt($request['password']);
         $user->update($request->all());
-        return redirect()->route('users.index')->with('success','User Update Success');
+
+        //check role from session
+        //if non admin user we assume request from profile page
+        //otherwise redirect to userlist its admin.... hopefully :P
+        if(strtolower(trans($request->session()->get('rolename')))=='admin'){
+            return redirect()->route('users.index')->with('success','User Update Success');
+        }else{
+            return redirect()->back()->with('success','User Update Success');
+        }
 
     }
+    
 
        /**
      * Remove the specified resource from storage.
@@ -115,6 +126,37 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index')->with('success','User Delete Success');
+    }
+
+    public function changePassword() {
+        return view('dashboard.changepasswd')->with([
+            'title'=>'Change Password',
+            'idpage'=>'changepasswd'
+        ]);
+    }
+
+    public function changePasswordPost(Request $request) {
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            // Current password and new password same
+            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:4|confirmed',
+        ]);
+
+        //Change Password
+        $user = User::find(Auth::user()->id);
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with("success","Password successfully changed!");
     }
 
 }

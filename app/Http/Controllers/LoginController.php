@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Contracts\Session\Session;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Session\Session;
+
 
 class LoginController extends Controller
 {
@@ -42,4 +44,9 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+    public function showChangePasswordGet() {
+        return view('auth.passwords.change-password');
+    }
+
+    
 }

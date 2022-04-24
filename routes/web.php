@@ -40,9 +40,19 @@ Route::get('/dashboard',function () {
         "title"=>"User Dashboard"
     ]);
 })->middleware('auth');
+Route::get('/dummy',function () {
+    return view('dashboard.dummy',[
+        "idpage"=>"dummy",
+        "title"=>"Some fancy menu"
+    ]);
+})->middleware('auth');
 
 Route::get('/logout',[LoginController::class,'logout']);
 
 //route for roles and user mapped by folder resources!
 Route::resource('roles',RoleController::class)->middleware('auth');
 Route::resource('users',UserController::class)->middleware('auth');
+
+//pasword changes
+Route::get('/changePassword', [UserController::class, 'changePassword'])->name('changePassword')->middleware('auth');
+Route::post('/changePassword', [UserController::class, 'changePasswordPost'])->name('changePasswordPost');
