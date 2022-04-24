@@ -44,9 +44,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
-    public function showChangePasswordGet() {
-        return view('auth.passwords.change-password');
-    }
-
     
 }
