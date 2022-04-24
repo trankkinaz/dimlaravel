@@ -53,7 +53,7 @@
 > Menu edit role
 >
 ![New role ](/screenshot/3-admin_7rolenew.png "role new")
-> Menu New user
+> Menu New role
 >
 
 ## Change Password

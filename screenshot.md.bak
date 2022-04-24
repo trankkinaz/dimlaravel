@@ -64,5 +64,21 @@
 >
 
 ## Profile Page
+> Menu ini digunakan untuk merubah data user yang aktif
+>
+![Profile page ](/screenshot/9-profile_page.png "profile")
+>
+>
 
+## CSO Role Dashboard
+> Menu utama user dengan role CSO
+- Navigasi sidebar berisi menu khusus untuk role CSO
+>
+![cso](/screenshot/4-csopage.png "csopage")
+
+## Staff Role Dashboard
+> Menu utama user dengan role Staff
+- Navigasi sidebar berisi menu khusus untuk role staff
+>
+![staff](/screenshot/5-staffpage.png "staffpage")
 
